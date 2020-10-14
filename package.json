@@ -1,0 +1,27 @@
+{
+  "name": "cake",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "compile": "npx babel-node --presets=@babel/preset-env",
+    "start": "nodemon --exec npm run compile -- src/app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@babel/cli": "^7.11.6",
+    "@babel/node": "^7.10.5",
+    "@babel/preset-env": "^7.11.5",
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "express-react-views": "^0.11.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.5"
+  }
+}
