@@ -38,11 +38,6 @@ app.post("/like", (req, res) => {
   res.redirect("back");
 });
 
-app.post("/like-action", (req, res) => {
-  likes++;
-  res.send({ data: { likes } });
-});
-
 app.get("/account", (req, res) => {
   res.render("Account", { name: "Sean" });
 });
