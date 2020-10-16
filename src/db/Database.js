@@ -16,5 +16,22 @@ export default function Database(name) {
     set(updates) {
       writeFileSync(filePath, JSON.stringify({ ...this.get(), ...updates }));
     },
+    query(key, value) {
+      const data = this.get();
+      switch (key) {
+        case "id": {
+          return data[value];
+        }
+        default: {
+          const output = {};
+          for (let id of data) {
+            if (data[id][key] && data[id][key] === value) {
+              output[id] = data[id];
+            }
+          }
+          return output;
+        }
+      }
+    },
   };
 }

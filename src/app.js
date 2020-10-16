@@ -46,12 +46,12 @@ app.get("/account", (req, res) => {
 });
 
 app.get("/view/:id", (req, res) => {
-  const document = DOCS_DB.get()[req.params.id];
+  const document = DOCS_DB.query("id", req.params.id);
   res.render("ViewDocument", { document, params: req.params });
 });
 
 app.get("/document/:id", function (req, res) {
-  const { blob, ...document } = DOCS_DB.get()[req.params.id];
+  const { blob, ...document } = DOCS_DB.query("id", req.params.id);
   const buffer = Buffer.from(blob, "base64");
 
   // TODO: cache
@@ -69,7 +69,7 @@ app.post("/upload", expressFileUpload(), (req, res) => {
   } = req.files;
   const id = new Date().getTime();
 
-  DOCS_DB.set({ [id]: { ...rest, blob: data.toString("base64") } });
+  DOCS_DB.set({ [id]: { id, ...rest, blob: data.toString("base64") } });
 
   res.redirect(`/view/${id}`);
 });
